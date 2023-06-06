@@ -12,7 +12,7 @@ import com.example.web.dao.UserDao;
 import com.example.web.model.User;
 
 @Controller
-public class homeController {
+public class HomeController {
 	
 	@Autowired
 	JdbcTemplate jdbcTemplate;
