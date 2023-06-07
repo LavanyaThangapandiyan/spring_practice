@@ -38,8 +38,11 @@ public class HomeController {
 		user.setEmail(email);
 		user.setMobile(mobile);
 		System.out.println(user.getName() +user.getEmail());
-	    userdao.saveUserDetails(user);
+		int number=userdao.saveUserDetails(user);
+		if(number==1)
 		return "success.jsp";
+		else
+			return "index.jsp";
      }
 	@GetMapping("update")
 	public String updateUserDetails(@RequestParam("name")String name,@RequestParam("email")String email,@RequestParam("mobile")String mobile)
@@ -49,7 +52,10 @@ public class HomeController {
 		user.setName(name);
 		user.setEmail(email);
 		user.setMobile(mobile);
-		userdao.updateUserDetails(user);
+		int updateUser= userdao.updateUserDetails(user);
+		if(updateUser==1)
+			return "index.jsp";
+		else
 		return "update.jsp";	
 	}
 	
@@ -58,8 +64,11 @@ public class HomeController {
 	{
 	    System.out.println("Delete..."+email);
 	    user.setEmail(email);
-	    userdao.deleteUserDetails(user);
+	    int deleteUser = userdao.deleteUserDetails(user);
+	    if(deleteUser==1)
 		return "index.jsp";
+	    else
+	    	return "delete.jsp";
 	}
 	
 	@GetMapping("userlist")

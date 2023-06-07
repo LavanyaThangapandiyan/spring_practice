@@ -7,7 +7,7 @@ public class Validation
 {
 	public boolean nameValidation(String name)
 	{
-		Pattern p=Pattern.compile("[a-zA-Z]");
+		Pattern p=Pattern.compile("[a-zA-Z]+");
 		Matcher m=p.matcher(name);
 		boolean name1=m.matches();
 		if(name1)

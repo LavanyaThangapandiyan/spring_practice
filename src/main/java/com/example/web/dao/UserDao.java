@@ -15,8 +15,8 @@ public class UserDao {
 	@Autowired
 	JdbcTemplate jdbcTemplate;
 
-	public void saveUserDetails(User user) 
-	{
+public int saveUserDetails(User user) 
+{
 /*List<User> userList = userList();
 String email = user.getEmail();
 boolean contains = userList.contains(email);
@@ -32,26 +32,45 @@ System.out.println(contains);
 			Object[] details= {user.getName(),user.getEmail(),user.getMobile()};
 			int numberOfRows=jdbcTemplate.update(insert,details);
 			System.out.println("Inserted Rows : "+numberOfRows);
+			return 1;
 		}else
 		{
 			System.out.println("Invalid Data");
+			return 0;
 		}
 	} 
 
-	public int updateUserDetails(User user) {
+	public int updateUserDetails(User user) 
+	{
+		boolean name=valid.nameValidation(user.getName());
+		boolean email=valid.emailValidation(user.getEmail());
+		boolean phone=valid.phoneNumberValidation(user.getMobile());
+		if(name==true &&email==true&&phone==true)
+		{
 		String update = "update user set name=?,mobile=? where email=?";
 		Object[] details = { user.getName(), user.getMobile(), user.getEmail() };
 		int numberOfRows = jdbcTemplate.update(update, details);
 		System.out.println("Updated rows : " + numberOfRows);
-		return numberOfRows;
+		return 1;
+		}else
+		{
+			System.out.println("Invalid Data");
+			return 0;
+		}
 	}
 
 	public int deleteUserDetails(User user) {
+		boolean email=valid.emailValidation(user.getEmail());
+		if(email==true)
+		{
 		String delete = "delete from user where email=? ";
 		Object[] details = { user.getEmail() };
 		int numberOfRows = jdbcTemplate.update(delete, details);
 		System.out.println("Deleted Rows : " + numberOfRows);
-		return numberOfRows;
+		return 1;
+		}else
+			System.out.println("Invalid");
+		return 0;
 	}
 
 	public List<User> userList() {
