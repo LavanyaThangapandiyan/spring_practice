@@ -58,6 +58,19 @@
 	<div align="center">
 		<form action="userlist">
 			<button type="submit">User List</button>
+		</form></div>
+		<br>
+		<div align="center">
+		
+		<form action="findUserbyEmail">
+		<div>
+				<label><i class="fas fa-file-signature"></i>&nbsp&nbsp&nbsp
+					Email:</label> <input id="email" type="text" class="form-control"
+					name="email" placeholder="Enter Email" required="required">
+				<label id="em" style="color: red; visibility: hidden">Invalid
+					Email</label><br>
+			</div><br>
+			<button type="submit">Find</button>
 		</form>
 
 	</div>
